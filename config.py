@@ -1,0 +1,4 @@
+import os
+
+os.environ['SERVER_ID'] = "777379895188652082"
+os.environ['MAIL_CHANNEL'] = "777643749664620564"
