@@ -6,4 +6,4 @@ def run_config():
     os.environ['MAIL_CHANNEL'] = "777643749664620564"
 
 
-STAFF_ID = frozenset((777644119010181181,))
+STAFF_ID = (777644119010181181,)
