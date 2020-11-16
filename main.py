@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 from keep_alive import keep_alive
 import os
 
@@ -15,8 +16,8 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():  # When the bot is ready
-    print("I'm in")
-    print(bot.user)  # Prints the bot's username and identifier
+    await bot.change_presence(activity=discord.Game(name="Watching your DMs!"))
+    print("READY,", bot.user)
 
 
 @bot.event

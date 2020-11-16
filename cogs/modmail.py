@@ -6,8 +6,13 @@ from discord.ext import commands
 from config import STAFF_ID
 
 
-def is_staff(): return commands.check(
-    lambda ctx: any([x in map(lambda y: y.id, ctx.message.author.roles) for x in STAFF_ID]))
+def is_staff():
+    return commands.check(
+        lambda ctx: any([
+            x in map(
+                lambda y: y.id, ctx.message.author.roles
+            ) for x in STAFF_ID
+        ]))
 
 
 class ModMailCommands(commands.Cog, name='ModMail Commands'):
