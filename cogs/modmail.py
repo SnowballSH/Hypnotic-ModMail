@@ -3,6 +3,12 @@ import discord
 import os
 from discord.ext import commands
 
+from config import STAFF_ID
+
+
+def is_staff(): return commands.check(
+    lambda ctx: ctx.message.author.id in STAFF_ID)
+
 
 class ModMailCommands(commands.Cog, name='ModMail Commands'):
     '''These are the modmail commands'''
@@ -44,6 +50,7 @@ class ModMailCommands(commands.Cog, name='ModMail Commands'):
         db["last"] = message.author.id
 
     @commands.command(name="resolve", aliases=['res', 'end'])
+    @is_staff
     async def resolve(self, ctx):
         if db["last"] is None:
             await ctx.send("No current sessions!")
@@ -56,6 +63,7 @@ class ModMailCommands(commands.Cog, name='ModMail Commands'):
         await ctx.send(f'Session marked as resolved by {ctx.author.mention}.')
 
     @commands.command(name="start", aliases=['st', 'ss'])
+    @is_staff
     async def start(self, ctx, user: discord.User):
         db["last"] = user.id
 
@@ -63,6 +71,7 @@ class ModMailCommands(commands.Cog, name='ModMail Commands'):
         await ctx.send(f'Session started with **{user.display_name}** by {ctx.author.mention}.')
 
     @commands.command(name="dm")
+    @is_staff
     async def dm(self, ctx, user: discord.User, *, msg):
         if ctx.channel.id != int(os.environ.get("MAIL_CHANNEL")):
             return
@@ -73,6 +82,7 @@ class ModMailCommands(commands.Cog, name='ModMail Commands'):
         await ctx.message.add_reaction('📬')
 
     @commands.command(name="reply", aliases=['r'])
+    @is_staff
     async def reply(self, ctx, *, msg):
         if db["last"] is None:
             await ctx.send("No user to reply to!")

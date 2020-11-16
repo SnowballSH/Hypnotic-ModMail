@@ -1,8 +1,11 @@
-import config
-
-import os
-from keep_alive import keep_alive
 from discord.ext import commands
+from keep_alive import keep_alive
+import os
+
+from config import run_config
+
+run_config()
+
 
 bot = commands.Bot(
     command_prefix="m!",
