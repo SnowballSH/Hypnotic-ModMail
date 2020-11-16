@@ -10,13 +10,14 @@ run_config()
 
 bot = commands.Bot(
     command_prefix="m!",
-    case_insensitive=True
+    case_insensitive=True,
+    description="Hypnotics Music ModMail Bot"
 )
 
 
 @bot.event
 async def on_ready():  # When the bot is ready
-    await bot.change_presence(activity=discord.Game(name="Watching your DMs!"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='your DMs!'))
     print("READY,", bot.user)
 
 
