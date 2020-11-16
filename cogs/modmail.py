@@ -39,6 +39,7 @@ class ModMailCommands(commands.Cog, name='ModMail Commands'):
 
     db["last"] = message.author.id
 
+
   @commands.command(name="resolve", aliases=['res', 'end'])
   async def resolve(self, ctx):
     if db["last"] is None:
